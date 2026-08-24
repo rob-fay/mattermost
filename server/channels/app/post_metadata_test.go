@@ -183,8 +183,8 @@ func TestPreparePostForClient(t *testing.T) {
 			Message:   "test message with priority",
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:     model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck: model.NewPointer(true),
+					Priority:     new(model.PostPriorityUrgent),
+					RequestedAck: new(true),
 				},
 			},
 		}, th.BasicChannel, model.CreatePostFlags{SetOnline: true})
@@ -222,8 +222,8 @@ func TestPreparePostForClient(t *testing.T) {
 			Message:   "test message with priority",
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:     model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck: model.NewPointer(true),
+					Priority:     new(model.PostPriorityUrgent),
+					RequestedAck: new(true),
 				},
 			},
 		}, th.BasicChannel, model.CreatePostFlags{SetOnline: true})
@@ -267,8 +267,8 @@ func TestPreparePostForClient(t *testing.T) {
 			Type:      model.PostTypeBurnOnRead,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:     model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck: model.NewPointer(true),
+					Priority:     new(model.PostPriorityUrgent),
+					RequestedAck: new(true),
 				},
 			},
 		}, th.BasicChannel, model.CreatePostFlags{SetOnline: true})
@@ -793,8 +793,8 @@ func TestPreparePostForClient(t *testing.T) {
 			Message:   "hello world with priority",
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:     model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck: model.NewPointer(true),
+					Priority:     new(model.PostPriorityUrgent),
+					RequestedAck: new(true),
 				},
 			},
 		}, th.BasicChannel, model.CreatePostFlags{SetOnline: true})
@@ -3459,7 +3459,7 @@ func TestPreparePostForClient_BurnOnReadSenderExpireAt(t *testing.T) {
 	// Enable Enterprise Advanced license and BoR config
 	th.App.Srv().SetLicense(model.NewTestLicenseSKU(model.LicenseShortSkuEnterpriseAdvanced))
 	th.App.UpdateConfig(func(cfg *model.Config) {
-		cfg.ServiceSettings.EnableBurnOnRead = model.NewPointer(true)
+		cfg.ServiceSettings.EnableBurnOnRead = new(true)
 	})
 
 	// Create a burn-on-read post
@@ -3619,7 +3619,7 @@ func TestSanitizeChannelMentionsForUser(t *testing.T) {
 		th := Setup(t).InitBasic(t)
 
 		th.App.UpdateConfig(func(cfg *model.Config) {
-			cfg.ComplianceSettings.Enable = model.NewPointer(true)
+			cfg.ComplianceSettings.Enable = new(true)
 		})
 
 		// BasicUser2 is a member of BasicTeam (via InitBasic) but NOT of this fresh channel.
@@ -3652,7 +3652,7 @@ func TestSanitizeChannelMentionsForUser(t *testing.T) {
 				th := Setup(t).InitBasic(t)
 
 				th.App.UpdateConfig(func(cfg *model.Config) {
-					cfg.ComplianceSettings.Enable = model.NewPointer(compliance)
+					cfg.ComplianceSettings.Enable = new(compliance)
 				})
 
 				team2 := th.CreateTeam(t)
@@ -3682,7 +3682,7 @@ func TestSanitizeChannelMentionsForUser(t *testing.T) {
 				th := Setup(t).InitBasic(t)
 
 				th.App.UpdateConfig(func(cfg *model.Config) {
-					cfg.ComplianceSettings.Enable = model.NewPointer(compliance)
+					cfg.ComplianceSettings.Enable = new(compliance)
 				})
 
 				priv := th.CreatePrivateChannel(t, th.BasicTeam)

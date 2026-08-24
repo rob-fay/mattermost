@@ -443,10 +443,10 @@ func TestPatchCPAField(t *testing.T) {
 	require.Nil(t, appErr)
 
 	patch := &model.PropertyFieldPatch{
-		Name:       model.NewPointer("Patched name"),
-		Attrs:      model.NewPointer(model.StringInterface{model.CustomProfileAttributesPropertyAttrsVisibility: model.CustomProfileAttributesVisibilityWhenSet}),
-		TargetID:   model.NewPointer(model.NewId()),
-		TargetType: model.NewPointer(model.NewId()),
+		Name:       new("Patched name"),
+		Attrs:      new(model.StringInterface{model.CustomProfileAttributesPropertyAttrsVisibility: model.CustomProfileAttributesVisibilityWhenSet}),
+		TargetID:   new(model.NewId()),
+		TargetType: new(model.NewId()),
 	}
 
 	t.Run("should fail if the field doesn't exist", func(t *testing.T) {
@@ -518,7 +518,7 @@ func TestPatchCPAField(t *testing.T) {
 
 		// Patch the field with updated option names and colors
 		selectPatch := &model.PropertyFieldPatch{
-			Attrs: model.NewPointer(model.StringInterface{
+			Attrs: new(model.StringInterface{
 				model.PropertyFieldAttributeOptions: []any{
 					map[string]any{
 						"id":    originalID1,
@@ -594,8 +594,8 @@ func TestPatchCPAField(t *testing.T) {
 
 		// Patch the field without changing type (just update name and add a new option)
 		patch := &model.PropertyFieldPatch{
-			Name: model.NewPointer("Updated select field name"),
-			Attrs: model.NewPointer(model.StringInterface{
+			Name: new("Updated select field name"),
+			Attrs: new(model.StringInterface{
 				model.PropertyFieldAttributeOptions: []any{
 					map[string]any{
 						"id":    optionID, // Keep the same ID for the first option
@@ -667,7 +667,7 @@ func TestPatchCPAField(t *testing.T) {
 
 		// Patch the field and change type from select to text
 		patch := &model.PropertyFieldPatch{
-			Type: model.NewPointer(model.PropertyFieldTypeText),
+			Type: new(model.PropertyFieldTypeText),
 		}
 		updatedField, appErr := th.App.PatchCPAField(rctx, createdField.ID, patch)
 		require.Nil(t, appErr)

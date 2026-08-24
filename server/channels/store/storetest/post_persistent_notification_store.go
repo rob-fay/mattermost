@@ -28,9 +28,9 @@ func testPostPersistentNotificationStoreGet(t *testing.T, rctx request.CTX, ss s
 	p1.CreateAt = 10
 	p1.Metadata = &model.PostMetadata{
 		Priority: &model.PostPriority{
-			Priority:                model.NewPointer("important"),
-			RequestedAck:            model.NewPointer(false),
-			PersistentNotifications: model.NewPointer(true),
+			Priority:                new("important"),
+			RequestedAck:            new(false),
+			PersistentNotifications: new(true),
 		},
 	}
 
@@ -41,9 +41,9 @@ func testPostPersistentNotificationStoreGet(t *testing.T, rctx request.CTX, ss s
 	p2.CreateAt = 20
 	p2.Metadata = &model.PostMetadata{
 		Priority: &model.PostPriority{
-			Priority:                model.NewPointer(model.PostPriorityUrgent),
-			RequestedAck:            model.NewPointer(true),
-			PersistentNotifications: model.NewPointer(true),
+			Priority:                new(model.PostPriorityUrgent),
+			RequestedAck:            new(true),
+			PersistentNotifications: new(true),
 		},
 	}
 
@@ -62,9 +62,9 @@ func testPostPersistentNotificationStoreGet(t *testing.T, rctx request.CTX, ss s
 	p4.CreateAt = 40
 	p4.Metadata = &model.PostMetadata{
 		Priority: &model.PostPriority{
-			Priority:                model.NewPointer(model.PostPriorityUrgent),
-			RequestedAck:            model.NewPointer(false),
-			PersistentNotifications: model.NewPointer(false),
+			Priority:                new(model.PostPriorityUrgent),
+			RequestedAck:            new(false),
+			PersistentNotifications: new(false),
 		},
 	}
 
@@ -75,9 +75,9 @@ func testPostPersistentNotificationStoreGet(t *testing.T, rctx request.CTX, ss s
 	p5.CreateAt = 50
 	p5.Metadata = &model.PostMetadata{
 		Priority: &model.PostPriority{
-			Priority:                model.NewPointer(model.PostPriorityUrgent),
-			RequestedAck:            model.NewPointer(false),
-			PersistentNotifications: model.NewPointer(true),
+			Priority:                new(model.PostPriorityUrgent),
+			RequestedAck:            new(false),
+			PersistentNotifications: new(true),
 		},
 	}
 
@@ -150,9 +150,9 @@ func testPostPersistentNotificationStoreUpdateLastSentAt(t *testing.T, rctx requ
 	p1.CreateAt = 10
 	p1.Metadata = &model.PostMetadata{
 		Priority: &model.PostPriority{
-			Priority:                model.NewPointer("important"),
-			RequestedAck:            model.NewPointer(false),
-			PersistentNotifications: model.NewPointer(true),
+			Priority:                new("important"),
+			RequestedAck:            new(false),
+			PersistentNotifications: new(true),
 		},
 	}
 
@@ -203,9 +203,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p1.CreateAt = 10
 		p1.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -216,9 +216,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p2.CreateAt = 20
 		p2.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer(model.PostPriorityUrgent),
-				RequestedAck:            model.NewPointer(true),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new(model.PostPriorityUrgent),
+				RequestedAck:            new(true),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -229,9 +229,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p3.CreateAt = 30
 		p3.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer(model.PostPriorityUrgent),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new(model.PostPriorityUrgent),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -263,9 +263,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p1.CreateAt = 10
 		p1.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -276,9 +276,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p2.CreateAt = 20
 		p2.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer(model.PostPriorityUrgent),
-				RequestedAck:            model.NewPointer(true),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new(model.PostPriorityUrgent),
+				RequestedAck:            new(true),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -289,9 +289,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p3.CreateAt = 30
 		p3.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer(model.PostPriorityUrgent),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new(model.PostPriorityUrgent),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -302,9 +302,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p4.CreateAt = 40
 		p4.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -315,9 +315,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p5.CreateAt = 50
 		p5.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -367,9 +367,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p1.CreateAt = 10
 		p1.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -380,9 +380,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p2.CreateAt = 20
 		p2.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer(model.PostPriorityUrgent),
-				RequestedAck:            model.NewPointer(true),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new(model.PostPriorityUrgent),
+				RequestedAck:            new(true),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -393,9 +393,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p3.CreateAt = 30
 		p3.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer(model.PostPriorityUrgent),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new(model.PostPriorityUrgent),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -406,9 +406,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p4.CreateAt = 40
 		p4.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 
@@ -419,9 +419,9 @@ func testPostPersistentNotificationStoreDelete(t *testing.T, rctx request.CTX, s
 		p5.CreateAt = 50
 		p5.Metadata = &model.PostMetadata{
 			Priority: &model.PostPriority{
-				Priority:                model.NewPointer("important"),
-				RequestedAck:            model.NewPointer(false),
-				PersistentNotifications: model.NewPointer(true),
+				Priority:                new("important"),
+				RequestedAck:            new(false),
+				PersistentNotifications: new(true),
 			},
 		}
 

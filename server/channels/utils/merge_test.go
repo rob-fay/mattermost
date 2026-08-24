@@ -1656,5 +1656,5 @@ func mergeTestStructsPtrs(base, patch *testStruct) (*testStruct, error) {
 }
 
 func newPointer[T any](t T) *T {
-	return model.NewPointer(t)
+	return new(t)
 }

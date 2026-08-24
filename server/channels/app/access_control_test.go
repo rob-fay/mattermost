@@ -599,7 +599,7 @@ func TestAssignAccessControlPolicyToChannels(t *testing.T) {
 			appErr := th.App.PermanentDeleteChannel(th.Context, privateChannel)
 			require.Nil(t, appErr)
 		})
-		privateChannel.Shared = model.NewPointer(true)
+		privateChannel.Shared = new(true)
 		_, err := th.App.Srv().Store().Channel().Update(th.Context, privateChannel)
 		require.NoError(t, err)
 
@@ -903,7 +903,7 @@ func TestValidateChannelAccessControlPermission(t *testing.T) {
 		})
 
 		// Mark channel as shared
-		sharedChannel.Shared = model.NewPointer(true)
+		sharedChannel.Shared = new(true)
 		_, err := th.App.Srv().Store().Channel().Update(th.Context, sharedChannel)
 		require.NoError(t, err)
 
@@ -1128,7 +1128,7 @@ func TestValidateChannelAccessControlPolicyCreation(t *testing.T) {
 		})
 
 		// Mark channel as shared
-		sharedChannel.Shared = model.NewPointer(true)
+		sharedChannel.Shared = new(true)
 		_, err := th.App.Srv().Store().Channel().Update(th.Context, sharedChannel)
 		require.NoError(t, err)
 
@@ -1615,7 +1615,7 @@ func TestHasPermissionToFileAction(t *testing.T) {
 		th.App.Srv().ch.AccessControl = mockAccessControl
 
 		th.App.UpdateConfig(func(cfg *model.Config) {
-			cfg.AccessControlSettings.EnableAttributeBasedAccessControl = model.NewPointer(false)
+			cfg.AccessControlSettings.EnableAttributeBasedAccessControl = new(false)
 			cfg.FeatureFlags.PermissionPolicies = true
 		})
 
@@ -1628,7 +1628,7 @@ func TestHasPermissionToFileAction(t *testing.T) {
 		th.App.Srv().ch.AccessControl = mockAccessControl
 
 		th.App.UpdateConfig(func(cfg *model.Config) {
-			cfg.AccessControlSettings.EnableAttributeBasedAccessControl = model.NewPointer(true)
+			cfg.AccessControlSettings.EnableAttributeBasedAccessControl = new(true)
 			cfg.FeatureFlags.PermissionPolicies = false
 		})
 

@@ -1224,7 +1224,7 @@ func TestCPAField_Patch(t *testing.T) {
 				},
 			},
 			patch: &PropertyFieldPatch{
-				Name: NewPointer("Updated Name"),
+				Name: new("Updated Name"),
 			},
 			expectedField: &CPAField{
 				PropertyField: PropertyField{
@@ -1253,7 +1253,7 @@ func TestCPAField_Patch(t *testing.T) {
 				},
 			},
 			patch: &PropertyFieldPatch{
-				Type: NewPointer(PropertyFieldTypeSelect),
+				Type: new(PropertyFieldTypeSelect),
 			},
 			expectedField: &CPAField{
 				PropertyField: PropertyField{
@@ -1488,8 +1488,8 @@ func TestCPAField_Patch(t *testing.T) {
 				},
 			},
 			patch: &PropertyFieldPatch{
-				Name:     NewPointer("Updated Name"),
-				TargetID: NewPointer("should-be-cleared"),
+				Name:     new("Updated Name"),
+				TargetID: new("should-be-cleared"),
 			},
 			expectedField: &CPAField{
 				PropertyField: PropertyField{
@@ -1519,8 +1519,8 @@ func TestCPAField_Patch(t *testing.T) {
 				},
 			},
 			patch: &PropertyFieldPatch{
-				Name:       NewPointer("Updated Name"),
-				TargetType: NewPointer("should-be-cleared"),
+				Name:       new("Updated Name"),
+				TargetType: new("should-be-cleared"),
 			},
 			expectedField: &CPAField{
 				PropertyField: PropertyField{
@@ -1552,7 +1552,7 @@ func TestCPAField_Patch(t *testing.T) {
 				},
 			},
 			patch: &PropertyFieldPatch{
-				Name: NewPointer("New Name"),
+				Name: new("New Name"),
 				Attrs: &StringInterface{
 					CustomProfileAttributesPropertyAttrsVisibility: CustomProfileAttributesVisibilityAlways,
 					CustomProfileAttributesPropertyAttrsSortOrder:  5.0,

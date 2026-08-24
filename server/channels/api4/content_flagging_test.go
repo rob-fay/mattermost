@@ -16,11 +16,11 @@ import (
 func setBasicCommonReviewerConfig(th *TestHelper) *model.AppError {
 	config := model.ContentFlaggingSettingsRequest{
 		ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-			EnableContentFlagging: model.NewPointer(true),
+			EnableContentFlagging: new(true),
 		},
 		ReviewerSettings: &model.ReviewSettingsRequest{
 			ReviewerSettings: model.ReviewerSettings{
-				CommonReviewers: model.NewPointer(true),
+				CommonReviewers: new(true),
 			},
 			ReviewerIDsSettings: model.ReviewerIDsSettings{
 				CommonReviewerIds: []string{th.BasicUser.Id},
@@ -34,16 +34,16 @@ func setBasicCommonReviewerConfig(th *TestHelper) *model.AppError {
 func setNonReviewerConfig(th *TestHelper) *model.AppError {
 	config := model.ContentFlaggingSettingsRequest{
 		ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-			EnableContentFlagging: model.NewPointer(true),
+			EnableContentFlagging: new(true),
 		},
 		ReviewerSettings: &model.ReviewSettingsRequest{
 			ReviewerSettings: model.ReviewerSettings{
-				CommonReviewers: model.NewPointer(false),
+				CommonReviewers: new(false),
 			},
 			ReviewerIDsSettings: model.ReviewerIDsSettings{
 				TeamReviewersSetting: map[string]*model.TeamReviewerSetting{
 					th.BasicTeam.Id: {
-						Enabled:     model.NewPointer(true),
+						Enabled:     new(true),
 						ReviewerIds: []string{},
 					},
 				},
@@ -59,16 +59,16 @@ func setBasicTeamReviewerConfig(th *TestHelper, extraReviewerIds ...string) *mod
 	ids = append(ids, extraReviewerIds...)
 	config := model.ContentFlaggingSettingsRequest{
 		ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-			EnableContentFlagging: model.NewPointer(true),
+			EnableContentFlagging: new(true),
 		},
 		ReviewerSettings: &model.ReviewSettingsRequest{
 			ReviewerSettings: model.ReviewerSettings{
-				CommonReviewers: model.NewPointer(false),
+				CommonReviewers: new(false),
 			},
 			ReviewerIDsSettings: model.ReviewerIDsSettings{
 				TeamReviewersSetting: map[string]*model.TeamReviewerSetting{
 					th.BasicTeam.Id: {
-						Enabled:     model.NewPointer(true),
+						Enabled:     new(true),
 						ReviewerIds: ids,
 					},
 				},
@@ -82,14 +82,14 @@ func setBasicTeamReviewerConfig(th *TestHelper, extraReviewerIds ...string) *mod
 func setCommonReviewerWithRequiredCommentConfig(th *TestHelper) *model.AppError {
 	config := model.ContentFlaggingSettingsRequest{
 		ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-			EnableContentFlagging: model.NewPointer(true),
+			EnableContentFlagging: new(true),
 			AdditionalSettings: &model.AdditionalContentFlaggingSettings{
-				ReviewerCommentRequired: model.NewPointer(true),
+				ReviewerCommentRequired: new(true),
 			},
 		},
 		ReviewerSettings: &model.ReviewSettingsRequest{
 			ReviewerSettings: model.ReviewerSettings{
-				CommonReviewers: model.NewPointer(true),
+				CommonReviewers: new(true),
 			},
 			ReviewerIDsSettings: model.ReviewerIDsSettings{
 				CommonReviewerIds: []string{th.BasicUser.Id},
@@ -159,7 +159,7 @@ func TestRequireContentFlaggingEnabled(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -179,7 +179,7 @@ func TestRequireContentFlaggingEnabled(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(true)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(true)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -203,7 +203,7 @@ func TestGetFlaggingConfiguration(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -218,7 +218,7 @@ func TestGetFlaggingConfiguration(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(true)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(true)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -297,11 +297,11 @@ func TestSaveContentFlaggingSettings(t *testing.T) {
 
 		config := model.ContentFlaggingSettingsRequest{
 			ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-				EnableContentFlagging: model.NewPointer(true),
+				EnableContentFlagging: new(true),
 			},
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers: model.NewPointer(true),
+					CommonReviewers: new(true),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					CommonReviewerIds: []string{th.BasicUser.Id},
@@ -324,8 +324,8 @@ func TestSaveContentFlaggingSettings(t *testing.T) {
 		config := model.ContentFlaggingSettingsRequest{
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers:       model.NewPointer(true),
-					TeamAdminsAsReviewers: model.NewPointer(false),
+					CommonReviewers:       new(true),
+					TeamAdminsAsReviewers: new(false),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					CommonReviewerIds: []string{},
@@ -346,11 +346,11 @@ func TestSaveContentFlaggingSettings(t *testing.T) {
 
 		config := model.ContentFlaggingSettingsRequest{
 			ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-				EnableContentFlagging: model.NewPointer(true),
+				EnableContentFlagging: new(true),
 			},
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers: model.NewPointer(true),
+					CommonReviewers: new(true),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					CommonReviewerIds: []string{th.BasicUser.Id},
@@ -411,7 +411,7 @@ func TestGetPostPropertyValues(t *testing.T) {
 	t.Run("Should return 501 when feature is disabled", func(t *testing.T) {
 		th.App.Srv().SetLicense(model.NewTestLicenseSKU(model.LicenseShortSkuEnterpriseAdvanced))
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -425,7 +425,7 @@ func TestGetPostPropertyValues(t *testing.T) {
 	t.Run("Should return 403 when user is not a reviewer", func(t *testing.T) {
 		th.App.Srv().SetLicense(model.NewTestLicenseSKU(model.LicenseShortSkuEnterpriseAdvanced))
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(true)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(true)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -491,7 +491,7 @@ func TestGetFlaggedPost(t *testing.T) {
 	t.Run("Should return 501 when feature is disabled", func(t *testing.T) {
 		th.App.Srv().SetLicense(model.NewTestLicenseSKU(model.LicenseShortSkuEnterpriseAdvanced))
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -605,7 +605,7 @@ func TestFlagPost(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -625,7 +625,7 @@ func TestFlagPost(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(true)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(true)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -650,15 +650,15 @@ func TestFlagPost(t *testing.T) {
 
 		config := model.ContentFlaggingSettingsRequest{
 			ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-				EnableContentFlagging: model.NewPointer(true),
+				EnableContentFlagging: new(true),
 			},
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers: model.NewPointer(false),
+					CommonReviewers: new(false),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					TeamReviewersSetting: map[string]*model.TeamReviewerSetting{
-						th.BasicTeam.Id: {Enabled: model.NewPointer(false)},
+						th.BasicTeam.Id: {Enabled: new(false)},
 					},
 				},
 			},
@@ -701,7 +701,7 @@ func TestFlagPost(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(true)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(true)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -804,7 +804,7 @@ func TestGetTeamPostReportingFeatureStatus(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -820,11 +820,11 @@ func TestGetTeamPostReportingFeatureStatus(t *testing.T) {
 
 		config := model.ContentFlaggingSettingsRequest{
 			ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-				EnableContentFlagging: model.NewPointer(true),
+				EnableContentFlagging: new(true),
 			},
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers: model.NewPointer(true),
+					CommonReviewers: new(true),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					CommonReviewerIds: []string{"reviewer_user_id_1", "reviewer_user_id_2"},
@@ -867,7 +867,7 @@ func TestSearchReviewers(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -927,7 +927,7 @@ func TestAssignContentFlaggingReviewer(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -973,11 +973,11 @@ func TestAssignContentFlaggingReviewer(t *testing.T) {
 
 		config := model.ContentFlaggingSettingsRequest{
 			ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-				EnableContentFlagging: model.NewPointer(true),
+				EnableContentFlagging: new(true),
 			},
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers: model.NewPointer(true),
+					CommonReviewers: new(true),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					CommonReviewerIds: []string{th.BasicUser.Id}, // Only BasicUser is a reviewer
@@ -1009,11 +1009,11 @@ func TestAssignContentFlaggingReviewer(t *testing.T) {
 		// Also add reviewerUser as a common reviewer
 		config := model.ContentFlaggingSettingsRequest{
 			ContentFlaggingSettingsBase: model.ContentFlaggingSettingsBase{
-				EnableContentFlagging: model.NewPointer(true),
+				EnableContentFlagging: new(true),
 			},
 			ReviewerSettings: &model.ReviewSettingsRequest{
 				ReviewerSettings: model.ReviewerSettings{
-					CommonReviewers: model.NewPointer(true),
+					CommonReviewers: new(true),
 				},
 				ReviewerIDsSettings: model.ReviewerIDsSettings{
 					CommonReviewerIds: []string{th.BasicUser.Id, reviewerUser.Id},
@@ -1094,7 +1094,7 @@ func TestRemoveFlaggedPost(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 
@@ -1292,7 +1292,7 @@ func TestKeepFlaggedPost(t *testing.T) {
 		defer th.RemoveLicense(t)
 
 		th.App.UpdateConfig(func(config *model.Config) {
-			config.ContentFlaggingSettings.EnableContentFlagging = model.NewPointer(false)
+			config.ContentFlaggingSettings.EnableContentFlagging = new(false)
 			config.ContentFlaggingSettings.SetDefaults()
 		})
 

@@ -879,7 +879,7 @@ func (a *App) UpdatePost(rctx request.CTX, receivedUpdatedPost *model.Post, upda
 	}
 
 	if receivedUpdatedPost.IsRemote() {
-		oldPost.RemoteId = model.NewPointer(*receivedUpdatedPost.RemoteId)
+		oldPost.RemoteId = new(*receivedUpdatedPost.RemoteId)
 	}
 
 	var rejectionReason string

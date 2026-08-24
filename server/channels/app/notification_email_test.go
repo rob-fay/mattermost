@@ -1037,7 +1037,7 @@ func TestLandingLink(t *testing.T) {
 	mockStore := testlib.GetMockStoreForSetupFunctions()
 	th := setupTestHelper(mockStore, mainHelper.GetSQLStore(), mainHelper.GetSQLSettings(), mainHelper.GetSearchEngine(), false, false,
 		func(cfg *model.Config) {
-			cfg.ServiceSettings.SiteURL = model.NewPointer("http://localhost:8065")
+			cfg.ServiceSettings.SiteURL = new("http://localhost:8065")
 		}, nil, t)
 
 	recipient := buildTestUser("test-recipient-id", "recipient", "Recipient User", true)
@@ -1076,7 +1076,7 @@ func TestLandingLinkPermalink(t *testing.T) {
 	mockStore := testlib.GetMockStoreForSetupFunctions()
 	th := setupTestHelper(mockStore, mainHelper.GetSQLStore(), mainHelper.GetSQLSettings(), mainHelper.GetSearchEngine(), false, false,
 		func(cfg *model.Config) {
-			cfg.ServiceSettings.SiteURL = model.NewPointer("http://localhost:8065")
+			cfg.ServiceSettings.SiteURL = new("http://localhost:8065")
 		}, nil, t)
 
 	recipient := buildTestUser("test-recipient-id", "recipient", "Recipient User", true)

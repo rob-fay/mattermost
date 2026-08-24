@@ -371,7 +371,7 @@ func TestPluginSync(t *testing.T) {
 		{
 			"local",
 			func(cfg *model.Config) {
-				cfg.FileSettings.DriverName = model.NewPointer(model.ImageDriverLocal)
+				cfg.FileSettings.DriverName = new(model.ImageDriverLocal)
 			},
 		},
 		{
@@ -388,14 +388,14 @@ func TestPluginSync(t *testing.T) {
 				}
 
 				s3Endpoint := fmt.Sprintf("%s:%s", s3Host, s3Port)
-				cfg.FileSettings.DriverName = model.NewPointer(model.ImageDriverS3)
-				cfg.FileSettings.AmazonS3AccessKeyId = model.NewPointer(model.MinioAccessKey)
-				cfg.FileSettings.AmazonS3SecretAccessKey = model.NewPointer(model.MinioSecretKey)
-				cfg.FileSettings.AmazonS3Bucket = model.NewPointer(model.MinioBucket)
-				cfg.FileSettings.AmazonS3PathPrefix = model.NewPointer("")
-				cfg.FileSettings.AmazonS3Endpoint = model.NewPointer(s3Endpoint)
-				cfg.FileSettings.AmazonS3Region = model.NewPointer("")
-				cfg.FileSettings.AmazonS3SSL = model.NewPointer(false)
+				cfg.FileSettings.DriverName = new(model.ImageDriverS3)
+				cfg.FileSettings.AmazonS3AccessKeyId = new(model.MinioAccessKey)
+				cfg.FileSettings.AmazonS3SecretAccessKey = new(model.MinioSecretKey)
+				cfg.FileSettings.AmazonS3Bucket = new(model.MinioBucket)
+				cfg.FileSettings.AmazonS3PathPrefix = new("")
+				cfg.FileSettings.AmazonS3Endpoint = new(s3Endpoint)
+				cfg.FileSettings.AmazonS3Region = new("")
+				cfg.FileSettings.AmazonS3SSL = new(false)
 			},
 		},
 	}

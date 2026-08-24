@@ -34,7 +34,7 @@ func (p *TestPlugin) OnActivate() error {
 			Id:       syncUserID,
 			Username: "rpc-synced-user",
 			Email:    syncUserID + "@remote.test",
-			RemoteId: model.NewPointer(remoteID),
+			RemoteId: new(remoteID),
 		},
 	}
 	msg.Posts = []*model.Post{
@@ -44,7 +44,7 @@ func (p *TestPlugin) OnActivate() error {
 			UserId:    syncUserID,
 			Message:   "hello from plugin over RPC",
 			CreateAt:  model.GetMillis(),
-			RemoteId:  model.NewPointer(remoteID),
+			RemoteId:  new(remoteID),
 		},
 	}
 

@@ -380,7 +380,7 @@ func (s *Server) doContentExtractionConfigDefaultTrueMigration() error {
 	}
 
 	s.platform.UpdateConfig(func(config *model.Config) {
-		config.FileSettings.ExtractContent = model.NewPointer(true)
+		config.FileSettings.ExtractContent = new(true)
 	})
 
 	system := model.System{
@@ -604,7 +604,7 @@ func (s *Server) doPostPriorityConfigDefaultTrueMigration() error {
 	}
 
 	s.platform.UpdateConfig(func(config *model.Config) {
-		config.ServiceSettings.PostPriority = model.NewPointer(true)
+		config.ServiceSettings.PostPriority = new(true)
 	})
 
 	system := model.System{
@@ -786,9 +786,9 @@ func (s *Server) doSetupManagedCategoryProperties() error {
 			TargetType:        "system",
 			TargetID:          "",
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelMember),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelMember),
 		}
 
 		if _, err := s.propertyService.CreatePropertyField(nil, field); err != nil {

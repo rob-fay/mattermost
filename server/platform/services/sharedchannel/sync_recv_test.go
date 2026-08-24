@@ -237,7 +237,7 @@ func TestUpsertSyncUserStatus(t *testing.T) {
 		remoteID := model.NewId()
 		user := &model.User{
 			Id:       model.NewId(),
-			RemoteId: model.NewPointer(remoteID),
+			RemoteId: new(remoteID),
 		}
 
 		scs, mockApp, status, remoteCluster := setup(remoteID, user)
@@ -285,7 +285,7 @@ func TestUpsertSyncUserStatus(t *testing.T) {
 		anotherRemoteID := model.NewId()
 		user := &model.User{
 			Id:       model.NewId(),
-			RemoteId: model.NewPointer(anotherRemoteID),
+			RemoteId: new(anotherRemoteID),
 		}
 
 		scs, mockApp, status, remoteCluster := setup(remoteID, user)
@@ -326,7 +326,7 @@ func TestUpsertSyncPost(t *testing.T) {
 	t.Run("rejects edit of a post owned by a different remote", func(t *testing.T) {
 		otherRemoteID := model.NewId()
 		postID := model.NewId()
-		existing := &model.Post{Id: postID, ChannelId: channelID, Message: "original", RemoteId: model.NewPointer(otherRemoteID)}
+		existing := &model.Post{Id: postID, ChannelId: channelID, Message: "original", RemoteId: new(otherRemoteID)}
 
 		scs, mockApp := setup(t, existing)
 
@@ -352,7 +352,7 @@ func TestUpsertSyncPost(t *testing.T) {
 
 	t.Run("allows edit of a post owned by the sending remote", func(t *testing.T) {
 		postID := model.NewId()
-		existing := &model.Post{Id: postID, ChannelId: channelID, Message: "original", RemoteId: model.NewPointer(remoteID)}
+		existing := &model.Post{Id: postID, ChannelId: channelID, Message: "original", RemoteId: new(remoteID)}
 
 		scs, mockApp := setup(t, existing)
 		updated := &model.Post{Id: postID, ChannelId: channelID, Message: "updated"}

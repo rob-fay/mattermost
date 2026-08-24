@@ -19,7 +19,7 @@ func TestDownloadFromURL(t *testing.T) {
 	th := Setup(t)
 
 	app := th.App
-	app.Config().PluginSettings.AllowInsecureDownloadURL = model.NewPointer(true)
+	app.Config().PluginSettings.AllowInsecureDownloadURL = new(true)
 
 	// To keep track of how many times an endpoint is retried. This needs to be reset
 	// for each test run.

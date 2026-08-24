@@ -167,7 +167,7 @@ func TestPatchCPAField(t *testing.T) {
 	})
 
 	th.TestForSystemAdminAndLocal(t, func(t *testing.T, client *model.Client4) {
-		patch := &model.PropertyFieldPatch{Name: model.NewPointer(model.NewId())}
+		patch := &model.PropertyFieldPatch{Name: new(model.NewId())}
 		patchedField, resp, err := client.PatchCPAField(context.Background(), model.NewId(), patch)
 		CheckForbiddenStatus(t, resp)
 		require.Error(t, err)
@@ -189,7 +189,7 @@ func TestPatchCPAField(t *testing.T) {
 		require.Nil(t, appErr)
 		require.NotNil(t, createdField)
 
-		patch := &model.PropertyFieldPatch{Name: model.NewPointer(model.NewId())}
+		patch := &model.PropertyFieldPatch{Name: new(model.NewId())}
 		_, resp, err := th.Client.PatchCPAField(context.Background(), createdField.ID, patch)
 		CheckForbiddenStatus(t, resp)
 		require.Error(t, err)
@@ -209,7 +209,7 @@ func TestPatchCPAField(t *testing.T) {
 		require.NotNil(t, createdField)
 
 		newName := model.NewId()
-		patch := &model.PropertyFieldPatch{Name: model.NewPointer(fmt.Sprintf("  %s \t ", newName))} // name should be sanitized
+		patch := &model.PropertyFieldPatch{Name: new(fmt.Sprintf("  %s \t ", newName))} // name should be sanitized
 		patchedField, resp, err := client.PatchCPAField(context.Background(), createdField.ID, patch)
 		CheckOKStatus(t, resp)
 		require.NoError(t, err)
@@ -265,7 +265,7 @@ func TestPatchCPAField(t *testing.T) {
 			// Options should be automatically removed even though we don't explicitly remove them
 			ldapAttr := "user_attribute"
 			textPatch := &model.PropertyFieldPatch{
-				Type:  model.NewPointer(model.PropertyFieldTypeText),
+				Type:  new(model.PropertyFieldTypeText),
 				Attrs: &model.StringInterface{"ldap": ldapAttr},
 			}
 
@@ -286,7 +286,7 @@ func TestPatchCPAField(t *testing.T) {
 			// Now patch to change type to date
 			// LDAP attribute should be automatically removed even though we don't explicitly remove it
 			datePatch := &model.PropertyFieldPatch{
-				Type: model.NewPointer(model.PropertyFieldTypeDate),
+				Type: new(model.PropertyFieldTypeDate),
 			}
 
 			patchedDateField, resp, err := client.PatchCPAField(context.Background(), patchedTextField.ID, datePatch)

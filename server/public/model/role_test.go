@@ -97,7 +97,7 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(true)},
 				},
 			},
 			"members",
@@ -109,7 +109,7 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Guests: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Guests: new(true)},
 				},
 			},
 			"members",
@@ -121,7 +121,7 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(true)},
 				},
 			},
 			"guests",
@@ -133,15 +133,15 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(false)},
 				},
 				{
 					Name:  &manageMembers,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(false)},
 				},
 				{
 					Name:  &channelMentions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(false)},
 				},
 			},
 			"members",
@@ -153,15 +153,15 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Guests: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Guests: new(false)},
 				},
 				{
 					Name:  &manageMembers,
-					Roles: &ChannelModeratedRolesPatch{Guests: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Guests: new(false)},
 				},
 				{
 					Name:  &channelMentions,
-					Roles: &ChannelModeratedRolesPatch{Guests: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Guests: new(false)},
 				},
 			},
 			"guests",
@@ -173,19 +173,19 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(false)},
 				},
 				{
 					Name:  &manageMembers,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(false)},
 				},
 				{
 					Name:  &channelMentions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(true)},
 				},
 				{
 					Name:  &createPosts,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(true)},
 				},
 			},
 			"members",
@@ -197,7 +197,7 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(true)},
 				},
 			},
 			"members",
@@ -209,11 +209,11 @@ func TestRolePatchFromChannelModerationsPatch(t *testing.T) {
 			[]*ChannelModerationPatch{
 				{
 					Name:  &createReactions,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(false)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(false)},
 				},
 				{
 					Name:  &createPosts,
-					Roles: &ChannelModeratedRolesPatch{Members: NewPointer(true)},
+					Roles: &ChannelModeratedRolesPatch{Members: new(true)},
 				},
 			},
 			"members",

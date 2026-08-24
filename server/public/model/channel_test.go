@@ -55,7 +55,7 @@ func TestChannelIsValidGroupConstrained(t *testing.T) {
 
 	t.Run("group_constrained is allowed on public and private channels", func(t *testing.T) {
 		c := base
-		c.GroupConstrained = NewPointer(true)
+		c.GroupConstrained = new(true)
 
 		c.Type = ChannelTypeOpen
 		require.Nil(t, c.IsValid())
@@ -66,7 +66,7 @@ func TestChannelIsValidGroupConstrained(t *testing.T) {
 
 	t.Run("group_constrained is rejected on direct and group channels", func(t *testing.T) {
 		c := base
-		c.GroupConstrained = NewPointer(true)
+		c.GroupConstrained = new(true)
 
 		c.Type = ChannelTypeDirect
 		require.NotNil(t, c.IsValid())
@@ -138,8 +138,8 @@ func TestChannelBannerBackgroundColorValidation(t *testing.T) {
 		Header:   "valid-header",
 		Purpose:  "valid-purpose",
 		BannerInfo: &ChannelBannerInfo{
-			Enabled: NewPointer(true),
-			Text:    NewPointer("Banner Text"),
+			Enabled: new(true),
+			Text:    new("Banner Text"),
 		},
 	}
 
@@ -149,44 +149,44 @@ func TestChannelBannerBackgroundColorValidation(t *testing.T) {
 	require.Equal(t, "model.channel.is_valid.banner_info.background_color.empty.app_error", o.IsValid().Id)
 
 	// Test with empty background color
-	o.BannerInfo.BackgroundColor = NewPointer("")
+	o.BannerInfo.BackgroundColor = new("")
 	require.NotNil(t, o.IsValid())
 	require.Equal(t, "model.channel.is_valid.banner_info.background_color.empty.app_error", o.IsValid().Id)
 
 	// Test with invalid background color (no # prefix)
-	o.BannerInfo.BackgroundColor = NewPointer("FF0000")
+	o.BannerInfo.BackgroundColor = new("FF0000")
 	require.NotNil(t, o.IsValid())
 	require.Equal(t, "model.channel.is_valid.banner_info.background_color.invalid.app_error", o.IsValid().Id)
 
 	// Test with invalid background color (invalid characters)
-	o.BannerInfo.BackgroundColor = NewPointer("#GGGGGG")
+	o.BannerInfo.BackgroundColor = new("#GGGGGG")
 	require.NotNil(t, o.IsValid())
 	require.Equal(t, "model.channel.is_valid.banner_info.background_color.invalid.app_error", o.IsValid().Id)
 
 	// Test with invalid background color (wrong length)
-	o.BannerInfo.BackgroundColor = NewPointer("#FF00")
+	o.BannerInfo.BackgroundColor = new("#FF00")
 	require.NotNil(t, o.IsValid())
 	require.Equal(t, "model.channel.is_valid.banner_info.background_color.invalid.app_error", o.IsValid().Id)
 
 	// Test with invalid background color (wrong length)
-	o.BannerInfo.BackgroundColor = NewPointer("#FF00000")
+	o.BannerInfo.BackgroundColor = new("#FF00000")
 	require.NotNil(t, o.IsValid())
 	require.Equal(t, "model.channel.is_valid.banner_info.background_color.invalid.app_error", o.IsValid().Id)
 
 	// Test with valid 6-digit hex color
-	o.BannerInfo.BackgroundColor = NewPointer("#FF0000")
+	o.BannerInfo.BackgroundColor = new("#FF0000")
 	require.Nil(t, o.IsValid())
 
 	// Test with valid 6-digit hex color (lowercase)
-	o.BannerInfo.BackgroundColor = NewPointer("#ff0000")
+	o.BannerInfo.BackgroundColor = new("#ff0000")
 	require.Nil(t, o.IsValid())
 
 	// Test with valid 3-digit hex color
-	o.BannerInfo.BackgroundColor = NewPointer("#F00")
+	o.BannerInfo.BackgroundColor = new("#F00")
 	require.Nil(t, o.IsValid())
 
 	// Test with valid 3-digit hex color (lowercase)
-	o.BannerInfo.BackgroundColor = NewPointer("#f00")
+	o.BannerInfo.BackgroundColor = new("#f00")
 	require.Nil(t, o.IsValid())
 }
 
@@ -234,8 +234,8 @@ func TestSanitize(t *testing.T) {
 		CreatorId:         NewId(),
 		SchemeId:          &schemaId,
 		Props:             make(map[string]any),
-		GroupConstrained:  NewPointer(true),
-		Shared:            NewPointer(true),
+		GroupConstrained:  new(true),
+		Shared:            new(true),
 		TotalMsgCountRoot: 1,
 		PolicyID:          &schemaId,
 		LastRootPostAt:    1,

@@ -42,9 +42,9 @@ func TestCreatePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 
 		created, appErr := th.App.CreatePropertyField(th.Context, field, false, "")
@@ -62,9 +62,9 @@ func TestCreatePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 
 		created, appErr := th.App.CreatePropertyField(th.Context, field, true, "")
@@ -100,9 +100,9 @@ func TestCreatePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelSysadmin), // Should be "none" for protected fields
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelSysadmin), // Should be "none" for protected fields
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 
 		created, appErr := th.App.CreatePropertyField(th.Context, field, true, "")
@@ -141,9 +141,9 @@ func TestUpdatePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 		created, appErr := th.App.CreatePropertyField(th.Context, field, true, "")
 		require.Nil(t, appErr)
@@ -164,9 +164,9 @@ func TestUpdatePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 		created, appErr := th.App.CreatePropertyField(th.Context, field, true, "")
 		require.Nil(t, appErr)
@@ -239,9 +239,9 @@ func TestUpdatePropertyFields(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 
 		createdNonProtected, appErr := th.App.CreatePropertyField(th.Context, nonProtected, false, "")
@@ -281,9 +281,9 @@ func TestUpdatePropertyFields(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 
 		createdNonProtected, appErr := th.App.CreatePropertyField(th.Context, nonProtected, false, "")
@@ -372,9 +372,9 @@ func TestDeletePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 		created, appErr := th.App.CreatePropertyField(th.Context, field, true, "")
 		require.Nil(t, appErr)
@@ -399,9 +399,9 @@ func TestDeletePropertyField(t *testing.T) {
 			ObjectType:        model.PropertyFieldObjectTypeChannel,
 			TargetType:        string(model.PropertyFieldTargetLevelSystem),
 			Protected:         true,
-			PermissionField:   model.NewPointer(model.PermissionLevelNone),
-			PermissionValues:  model.NewPointer(model.PermissionLevelMember),
-			PermissionOptions: model.NewPointer(model.PermissionLevelSysadmin),
+			PermissionField:   new(model.PermissionLevelNone),
+			PermissionValues:  new(model.PermissionLevelMember),
+			PermissionOptions: new(model.PermissionLevelSysadmin),
 		}
 		created, appErr := th.App.CreatePropertyField(th.Context, field, true, "")
 		require.Nil(t, appErr)

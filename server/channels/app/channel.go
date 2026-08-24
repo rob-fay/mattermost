@@ -593,7 +593,7 @@ func (a *App) createGroupChannel(rctx request.CTX, userIDs []string, creatorID s
 		Name:        model.GetGroupNameFromUserIds(userIDs),
 		DisplayName: model.GetGroupDisplayNameFromUsers(users, true),
 		Type:        model.ChannelTypeGroup,
-		Shared:      model.NewPointer(channelIsShared),
+		Shared:      new(channelIsShared),
 	}
 
 	channel, nErr := a.Srv().Store().Channel().Save(rctx, group, *a.Config().TeamSettings.MaxChannelsPerTeam, channelOptions...)

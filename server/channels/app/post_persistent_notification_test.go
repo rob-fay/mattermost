@@ -467,8 +467,8 @@ func TestSendPersistentNotificationsBotSender(t *testing.T) {
 			Message:   "test " + "@" + th.BasicUser2.Username,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					PersistentNotifications: model.NewPointer(true),
+					Priority:                new(model.PostPriorityUrgent),
+					PersistentNotifications: new(true),
 				},
 			},
 			// Simulate old timestamp so persistent notifications are sent right away
@@ -519,8 +519,8 @@ func TestSendPersistentNotificationsBotSenderNotInChannel(t *testing.T) {
 			Message:   "test " + "@" + th.BasicUser2.Username,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					PersistentNotifications: model.NewPointer(true),
+					Priority:                new(model.PostPriorityUrgent),
+					PersistentNotifications: new(true),
 				},
 			},
 			CreateAt: time.Now().Add(-5 * time.Minute).UnixMilli(),

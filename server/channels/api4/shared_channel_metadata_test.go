@@ -150,9 +150,9 @@ func TestSharedChannelPostMetadataSync(t *testing.T) {
 			Message:   "Test post with priority metadata @" + th.BasicUser2.Username,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck:            model.NewPointer(true),
-					PersistentNotifications: model.NewPointer(true),
+					Priority:                new(model.PostPriorityUrgent),
+					RequestedAck:            new(true),
+					PersistentNotifications: new(true),
 				},
 			},
 		}, testChannel, model.CreatePostFlags{})
@@ -205,9 +205,9 @@ func TestSharedChannelPostMetadataSync(t *testing.T) {
 			Message:   "Test post requesting acknowledgements @" + th.BasicUser2.Username,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck:            model.NewPointer(true),
-					PersistentNotifications: model.NewPointer(false),
+					Priority:                new(model.PostPriorityUrgent),
+					RequestedAck:            new(true),
+					PersistentNotifications: new(false),
 				},
 			},
 		}, testChannel, model.CreatePostFlags{})
@@ -275,9 +275,9 @@ func TestSharedChannelPostMetadataSync(t *testing.T) {
 			Message:   "Test post for ack count sync @" + th.BasicUser2.Username,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck:            model.NewPointer(true),
-					PersistentNotifications: model.NewPointer(false),
+					Priority:                new(model.PostPriorityUrgent),
+					RequestedAck:            new(true),
+					PersistentNotifications: new(false),
 				},
 			},
 		}, testChannel, model.CreatePostFlags{})
@@ -371,9 +371,9 @@ func TestSharedChannelPostMetadataSync(t *testing.T) {
 			Message:   "Test post with persistent notifications @" + th.BasicUser2.Username,
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck:            model.NewPointer(true),
-					PersistentNotifications: model.NewPointer(true),
+					Priority:                new(model.PostPriorityUrgent),
+					RequestedAck:            new(true),
+					PersistentNotifications: new(true),
 				},
 			},
 		}, testChannel, model.CreatePostFlags{})
@@ -536,9 +536,9 @@ func TestSharedChannelPostMetadataSync(t *testing.T) {
 			Message:   "Cross-cluster ack test - please acknowledge",
 			Metadata: &model.PostMetadata{
 				Priority: &model.PostPriority{
-					Priority:                model.NewPointer(model.PostPriorityUrgent),
-					RequestedAck:            model.NewPointer(true),
-					PersistentNotifications: model.NewPointer(false),
+					Priority:                new(model.PostPriorityUrgent),
+					RequestedAck:            new(true),
+					PersistentNotifications: new(false),
 				},
 			},
 		}, testChannel, model.CreatePostFlags{})

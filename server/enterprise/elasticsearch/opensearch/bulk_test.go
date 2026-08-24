@@ -79,8 +79,8 @@ func TestBulkProcessor(t *testing.T) {
 	post := createTestPost(t, "hello world")
 
 	err := bulk.IndexOp(&types.IndexOperation{
-		Index_: model.NewPointer("myindex"),
-		Id_:    model.NewPointer(post.Id),
+		Index_: new("myindex"),
+		Id_:    new(post.Id),
 	}, post)
 	require.NoError(t, err)
 
@@ -144,8 +144,8 @@ func TestIndexOp(t *testing.T) {
 		post := createTestPost(t, "test message")
 
 		err := bulk.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post.Id),
+			Index_: new("testindex"),
+			Id_:    new(post.Id),
 		}, post)
 		require.NoError(t, err)
 		require.Equal(t, 1, bulk.pendingRequests)
@@ -160,8 +160,8 @@ func TestIndexOp(t *testing.T) {
 		data := []byte(`{"message": "test byte slice"}`)
 
 		err := bulk.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(docId),
+			Index_: new("testindex"),
+			Id_:    new(docId),
 		}, data)
 		require.NoError(t, err)
 		require.Equal(t, initialRequests+1, bulk.pendingRequests)
@@ -173,8 +173,8 @@ func TestIndexOp(t *testing.T) {
 		jsonData := []byte(`{"message": "test raw message"}`)
 
 		err := bulk.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(docId),
+			Index_: new("testindex"),
+			Id_:    new(docId),
 		}, jsonData)
 		require.NoError(t, err)
 		require.Equal(t, initialRequests+1, bulk.pendingRequests)
@@ -186,8 +186,8 @@ func TestIndexOp(t *testing.T) {
 		for i := range 5 {
 			post := createTestPost(t, fmt.Sprintf("test message %d", i))
 			err := bulk.IndexOp(&types.IndexOperation{
-				Index_: model.NewPointer("testindex"),
-				Id_:    model.NewPointer(post.Id),
+				Index_: new("testindex"),
+				Id_:    new(post.Id),
 			}, post)
 			require.NoError(t, err)
 		}
@@ -207,16 +207,16 @@ func TestIndexOp(t *testing.T) {
 
 		post1 := createTestPost(t, "first message")
 		err := bulk2.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post1.Id),
+			Index_: new("testindex"),
+			Id_:    new(post1.Id),
 		}, post1)
 		require.NoError(t, err)
 		require.Equal(t, 1, bulk2.pendingRequests)
 
 		post2 := createTestPost(t, "second message")
 		err = bulk2.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post2.Id),
+			Index_: new("testindex"),
+			Id_:    new(post2.Id),
 		}, post2)
 		require.NoError(t, err)
 		require.Equal(t, 2, bulk2.pendingRequests)
@@ -224,8 +224,8 @@ func TestIndexOp(t *testing.T) {
 		// Third operation should trigger flush
 		post3 := createTestPost(t, "third message")
 		err = bulk2.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post3.Id),
+			Index_: new("testindex"),
+			Id_:    new(post3.Id),
 		}, post3)
 		require.NoError(t, err)
 		require.Equal(t, 0, bulk2.pendingRequests)
@@ -251,8 +251,8 @@ func TestDeleteOp(t *testing.T) {
 		docId := model.NewId()
 
 		err := bulk.DeleteOp(&types.DeleteOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(docId),
+			Index_: new("testindex"),
+			Id_:    new(docId),
 		})
 		require.NoError(t, err)
 		require.Equal(t, 1, bulk.pendingRequests)
@@ -267,8 +267,8 @@ func TestDeleteOp(t *testing.T) {
 		for range 3 {
 			docId := model.NewId()
 			err := bulk.DeleteOp(&types.DeleteOperation{
-				Index_: model.NewPointer("testindex"),
-				Id_:    model.NewPointer(docId),
+				Index_: new("testindex"),
+				Id_:    new(docId),
 			})
 			require.NoError(t, err)
 		}
@@ -290,8 +290,8 @@ func TestDeleteOp(t *testing.T) {
 		for range 2 {
 			docId := model.NewId()
 			err := bulk2.DeleteOp(&types.DeleteOperation{
-				Index_: model.NewPointer("testindex"),
-				Id_:    model.NewPointer(docId),
+				Index_: new("testindex"),
+				Id_:    new(docId),
 			})
 			require.NoError(t, err)
 		}
@@ -300,8 +300,8 @@ func TestDeleteOp(t *testing.T) {
 		// Third operation should trigger flush
 		docId := model.NewId()
 		err := bulk2.DeleteOp(&types.DeleteOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(docId),
+			Index_: new("testindex"),
+			Id_:    new(docId),
 		})
 		require.NoError(t, err)
 		require.Equal(t, 0, bulk2.pendingRequests)
@@ -327,8 +327,8 @@ func TestFlush(t *testing.T) {
 		post := createTestPost(t, "test message")
 
 		err := bulk.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post.Id),
+			Index_: new("testindex"),
+			Id_:    new(post.Id),
 		}, post)
 		require.NoError(t, err)
 		require.Equal(t, 1, bulk.pendingRequests)
@@ -366,8 +366,8 @@ func TestStop(t *testing.T) {
 		post := createTestPost(t, "test message")
 
 		err := bulk.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post.Id),
+			Index_: new("testindex"),
+			Id_:    new(post.Id),
 		}, post)
 		require.NoError(t, err)
 		require.Equal(t, 1, bulk.pendingRequests)
@@ -405,8 +405,8 @@ func TestStop(t *testing.T) {
 		post := createTestPost(t, "test message")
 
 		err := bulk.IndexOp(&types.IndexOperation{
-			Index_: model.NewPointer("testindex"),
-			Id_:    model.NewPointer(post.Id),
+			Index_: new("testindex"),
+			Id_:    new(post.Id),
 		}, post)
 		require.NoError(t, err)
 		require.Equal(t, 1, bulk.pendingRequests)
@@ -458,8 +458,8 @@ func TestStopShutsDownPeriodicFlusher(t *testing.T) {
 
 			post := createTestPost(t, "test message")
 			err := bulk.IndexOp(&types.IndexOperation{
-				Index_: model.NewPointer("testindex"),
-				Id_:    model.NewPointer(post.Id),
+				Index_: new("testindex"),
+				Id_:    new(post.Id),
 			}, post)
 			require.NoError(t, err)
 
@@ -545,8 +545,8 @@ func TestFlushThresholds(t *testing.T) {
 		for range 5 {
 			post := createTestPost(t, "This is a long message that should help us exceed the byte threshold for testing")
 			err := bulk.IndexOp(&types.IndexOperation{
-				Index_: model.NewPointer("testindex"),
-				Id_:    model.NewPointer(post.Id),
+				Index_: new("testindex"),
+				Id_:    new(post.Id),
 			}, post)
 			require.NoError(t, err)
 		}
@@ -571,8 +571,8 @@ func TestFlushThresholds(t *testing.T) {
 		for range 3 {
 			post := createTestPost(t, "short")
 			err := bulk.IndexOp(&types.IndexOperation{
-				Index_: model.NewPointer("testindex"),
-				Id_:    model.NewPointer(post.Id),
+				Index_: new("testindex"),
+				Id_:    new(post.Id),
 			}, post)
 			require.NoError(t, err)
 			fmt.Println("PENDING REQS:", bulk.pendingRequests)
